@@ -1,0 +1,24 @@
+<div class="todo-app">
+  <h1>Todo List</h1>
+  <div class="input-container">
+    <input type="text" [(ngModel)]="newTask" (keyup.enter)="addTask()" placeholder="Add a new task..." />
+    <i (click)="addTask()" class="bi bi-plus-circle-fill bi-10x" style="font-size: 1.5em;"></i>
+  </div>
+  <ul>
+    <li *ngFor="let task of tasksList; let i = index" [class.completed]="task.completed">
+      <span>{{ task.title }}</span>
+      <i class="bi bi-trash3 bi-2x" (click)="removeTask(i)"></i>
+      <input class="form-check-input" type="checkbox" [checked]="task.completed" (change)="toggleComplete(i)">
+    </li>
+  </ul>
+</div>
+<div>
+  <h2>Completed list</h2>
+  <table class="table">
+    <tbody>
+    <tr *ngFor="let task of tasksList">
+      <td *ngIf="task.completed">{{task.title}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
